@@ -30,17 +30,21 @@ class Arbolb:
 				raiz.hder = Nodo(valor)
 			else:
 				self.insertar (valor, raiz.hder)
-
+	# Retorna el hermano de un elemento del arbol, indica cual hermano es
 	def hermano (self, valor):
 		pass
 	
+	# Retorna el numero de hojas de un arbol
 	def nro_hojas (self, valor):
 		pass
 	
+	# Retorna si los datos de un arbol son consecutivos (paso 1) recorrido inorden
 	def elem_consecutivos (self):
 		pass
 	
-	def tipo_nodo (self):
+	# Retorna el tipo del nodo de un elemento
+	# Raiz, Rama Derecha, Rama Izquierda, Hijo Derecho, Hijo Izquiedo, 
+	def tipo_nodo (self, valor):
 		pass
 					
 	def preorden (self, raiz = None):
