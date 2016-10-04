@@ -39,6 +39,9 @@ class Arbolb:
 	
 	def elem_consecutivos (self):
 		pass
+	
+	def tipo_nodo (self):
+		pass
 					
 	def preorden (self, raiz = None):
 		if (raiz == None):
