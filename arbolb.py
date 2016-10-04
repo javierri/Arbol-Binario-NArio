@@ -31,6 +31,15 @@ class Arbolb:
 			else:
 				self.insertar (valor, raiz.hder)
 
+	def hermano (self, valor):
+		pass
+	
+	def nro_hojas (self, valor):
+		pass
+	
+	def elem_consecutivos (self):
+		pass
+					
 	def preorden (self, raiz = None):
 		if (raiz == None):
 			if (self.__raiz == None):
@@ -66,7 +75,8 @@ class Arbolb:
 		print raiz.info,
 		if (raiz.hder != None):
 			self.inorden (raiz.hder)
-			
+
+# PRINCIPAL
 
 a = Arbolb()
 a.insertar(5)
