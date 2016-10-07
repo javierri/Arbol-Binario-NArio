@@ -43,9 +43,20 @@ class Arbolb:
 		pass
 	
 	# Retorna el tipo del nodo de un elemento
-	# Raiz, Rama Derecha, Rama Izquierda, Hijo Derecho, Hijo Izquiedo, 
+	# Raiz, Rama Derecha, Rama Izquierda, Hoja Derecho, Hoja Izquiedo, 
 	def tipo_nodo (self, valor):
 		pass
+	
+	def elem_mayor (self, raiz = None):
+		if (raiz == None):
+			if (self.__raiz == None):
+				return
+			raiz = self.__raiz
+			
+		if (raiz.hder != None): 
+			return self.elem_mayor(raiz.hder)
+			
+		return raiz.info
 					
 	def preorden (self, raiz = None):
 		if (raiz == None):
