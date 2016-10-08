@@ -47,6 +47,7 @@ class Arbolb:
 	def tipo_nodo (self, valor):
 		pass
 	
+	# Elemento mayor del arbol
 	def elem_mayor (self, raiz = None):
 		if (raiz == None):
 			if (self.__raiz == None):
