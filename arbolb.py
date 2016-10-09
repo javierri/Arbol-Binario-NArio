@@ -97,8 +97,9 @@ class Arbolb:
 		
 		return 1 + nro
 	
-	# FORMA 3 1: la funcion recursiva n_nodos() crea un atributo al arbol self.__n donde sumará los valores
+	# FORMA 3: la funcion recursiva n_nodos() crea un atributo al arbol self.__n donde sumará los valores
 	# de los nodos a traves del recorrido, al final retorna el valor del atributo	
+	
 	def n_nodos (self, raiz = None):
 		if (raiz == None):
 			self.__n = 0
