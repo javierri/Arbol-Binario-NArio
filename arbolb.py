@@ -1,6 +1,6 @@
 # Arbol Binario
 # Autor: Javier Rivera
-# https://repl.it/Dkvj/5
+# https://repl.it/Dkvj/6
 
 class Nodo:
 	def __init__ (self, valor):
@@ -30,22 +30,96 @@ class Arbolb:
 				raiz.hder = Nodo(valor)
 			else:
 				self.insertar (valor, raiz.hder)
+				
 	# Retorna el hermano de un elemento del arbol, indica cual hermano es
-	def hermano (self, valor):
-		pass
+	def hermano (self, valor, raiz = None):
+		if (raiz == None):
+			if (self.__raiz == None):
+				return
+			raiz = self.__raiz
+
+		if (valor < raiz.info and raiz.hizq != None):
+			if (raiz.hizq.info == valor):
+				if (raiz.hder != None):
+					return raiz.hder.info, "DER"
+				return False, "DER"
+			return self.hermano (valor, raiz.hizq)
+			
+		elif (valor > raiz.info and raiz.hder != None):
+			if (raiz.hder.info == valor):
+				if (raiz.hizq != None):
+					return raiz.hizq.info, "IZQ"
+				return False, "IZQ"
+			return self.hermano (valor, raiz.hder)
+
+		return None
 	
 	# Retorna el numero de hojas de un arbol
-	def nro_hojas (self, valor):
-		pass
+	def num_hojas (self, raiz = None):
+		
+		if (raiz == None):
+			if (self.__raiz == None):
+				return
+			raiz = self.__raiz
+			
+		if (raiz.hizq == None and raiz.hder == None):
+			return 1
+		
+		n_hizq, n_hder = 0,0
+		if (raiz.hizq != None):
+			n_hizq = self.num_hojas(raiz.hizq)
+		
+		if (raiz.hder != None):
+			n_hder = self.num_hojas(raiz.hder)
+			
+		return n_hizq + n_hder
 	
 	# Retorna si los datos de un arbol son consecutivos (paso 1) recorrido inorden
-	def elem_consecutivos (self):
-		pass
+	def esConsecutivo (self, raiz = None):
+		if (raiz == None):
+			if (self.__raiz == None):
+				return
+			raiz = self.__raiz
+
+		self.__mayor = self.__menor = raiz.info
+		
+		if (raiz.hizq != None):
+			M = self.__mayor
+			cons = self.esConsecutivo (raiz.hizq)
+			if (not(cons) and (self.__mayor + 1) != raiz.info):
+				return False 
+			self.__mayor = M
+		
+		if (raiz.hder != None):
+			m = self.__menor 
+			cons = self.esConsecutivo (raiz.hder)
+			if (not(cons) and raiz.info != (self.__menor - 1)):
+				return False
+			self.__menor = m
+			
+		return True 
 	
 	# Retorna el tipo del nodo de un elemento
 	# Raiz, Rama Derecha, Rama Izquierda, Hoja Derecho, Hoja Izquiedo, 
-	def tipo_nodo (self, valor):
-		pass
+	def tipo_nodo (self, valor, raiz = None, dirn = None):
+		
+		if (raiz == None):
+			if (self.__raiz == None):
+				return
+			elif (self.__raiz.info == valor):
+				return "RAIZ"
+			raiz = self.__raiz			
+			
+		if (valor == raiz.info):
+			if (raiz.hizq == None and raiz.hder == None):
+				return "HOJA " + dirn
+			return "RAMA " + dirn
+				
+		if (valor < raiz.info and raiz.hizq != None):
+			return self.tipo_nodo (valor, raiz.hizq, "IZQ")
+			
+		elif (raiz.hder != None):
+			return self.tipo_nodo (valor, raiz.hder, "DER")
 	
 	# Elemento mayor del arbol
 	def elem_mayor (self, raiz = None):
@@ -152,23 +226,3 @@ class Arbolb:
 		if (raiz.hder != None):
 			self.inorden (raiz.hder)
 
-# PRINCIPAL
-
-a = Arbolb()
-a.insertar(5)
-a.insertar(2)
-a.insertar(7)
-a.insertar(9)
-a.insertar(8)
-a.insertar(4)
-a.insertar(3)
-a.insertar(6)
-
-a.preorden()
-print
-a.postorden()
-print
-a.inorden()
-
-print 
-print a.num_nodos(), a.nro_nodos(), a.n_nodos()
