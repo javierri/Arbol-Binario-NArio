@@ -135,8 +135,8 @@ class Arbolb:
 	
 	# TRES FORMAS DISTINTAS DE OBTENER EL NUMERO DE NODOS DE UN ARBOL BINARIO
 	
-	# FORMA 1: la funcion recursiva num_nodos() retorna el numeros de nodos del arbol izquierdo 
-	# y del arbol derecho y los suma al nodo donde se encuentra  
+	# FORMA 1 (A): la funcion recursiva num_nodos() retorna el numeros de nodos del arbol izquierdo 
+	# y del arbol derecho y los suma EN UNA MISMA VARIABLE al nodo donde se encuentra  
 	
 	def num_nodos(self, raiz = None):
 		if (raiz == None):
@@ -153,9 +153,28 @@ class Arbolb:
 		
 		return 1 + num
 
+	# FORMA 1 (B): a funcion recursiva num_nodos() retorna el numeros de nodos del arbol izquierdo 
+	# y del arbol derecho y los suma al nodo donde se encuentra  
+	
+	def num_nodos_B (self, raiz = None):
+		if (raiz == None):
+			if (self.__raiz == None):
+				return 0
+			raiz = self.__raiz
+		
+		numI,numD = 0,0
+		if (raiz.hizq != None):
+			numI = self.num_nodos(raiz.hizq)
+					
+		if (raiz.hder != None):
+			numD + self.num_nodos(raiz.hder)
+		
+		return 1 + numI + numD
+
+
 	# FORMA 2: la funcion recursiva nro_nodos() envia por paranetro el numero de nodos encontrados el recorrido  
-	# (iniciado por cero en la raiz) luego lo envia luego por parametro a sus ramas izquierda y derecha 
-	# para que retroenen la sumen de sus hijos, finalmente retorna el parametro nro mas el nodo actual
+	# (iniciado por cero en la raiz) luego lo envia por parametro a sus ramas izquierda y derecha 
+	# para que los retornen con la suma de sus hijos, finalmente retorna el parametro nro mas el nodo actual
 	
 	def nro_nodos (self, raiz = None, nro = 0):
 		if (raiz == None):
@@ -189,6 +208,8 @@ class Arbolb:
 			self.n_nodos(raiz.hder)
 		
 		return self.__n
+	
+	# Metodos de recorrido de un arbol binario
 					
 	def preorden (self, raiz = None):
 		if (raiz == None):
