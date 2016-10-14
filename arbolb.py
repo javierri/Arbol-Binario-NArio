@@ -54,6 +54,113 @@ class Arbolb:
 
 		return None
 	
+	def __hijoMayor (self, raiz = None):
+		if (raiz == None):
+			if (self.__raiz == None):
+				return
+			raiz = self.__raiz
+			self.__padre = None
+		
+		if (raiz.hder != None):
+			self.__padre = raiz
+			self.__dir = "D"
+			return self.__hijoMayor(raiz.hder)
+			
+		return raiz
+		
+	def __hijoMenor (self, raiz = None):
+		if (raiz == None):
+			if (self.__raiz == None):
+				return
+			raiz = self.__raiz
+			self.__padre = None
+		
+		if (raiz.hizq != None):
+			self.__padre = raiz
+			self.__dir = "I"
+			return self.__hijoMenor(raiz.hizq)
+			
+		return raiz
+		
+	def prof (self, raiz = None):
+		if (raiz == None):
+			if (self.__raiz == None):
+				return 0
+			raiz = self.__raiz
+
+		pizq = pder = 0
+		if (raiz.hizq != None):
+			pizq = self.prof (raiz.hizq)
+			
+		if (raiz.hder != None):
+			pder = self.prof (raiz.hder)
+
+		if (pizq > pder):
+			return pizq + 1
+		return pder + 1
+		
+	def eliminar (self, valor, raiz = None):
+		if (raiz == None):
+			if (self.__raiz == None):
+				return
+			raiz = self.__raiz
+			self.__padre = None
+			self.__dir = None
+			
+		if (raiz.info == valor):
+			if (raiz.hizq == None or raiz.hder == None):
+				# Caso 1: Es una Hoja
+				if (raiz.hizq == None and raiz.hder == None):
+			
+					if (not(self.__padre)): # Es la raiz
+						del raiz 
+						self.__raiz = None
+						return True
+					
+					nieto = None
+					
+				# Caso 2: Una rama con una sola Hoja	
+				else:
+					if (raiz.hizq != None):
+						nieto = raiz.hizq
+					else:
+						nieto = raiz.hder
+				
+				# Elimina nodo y acomoda hijo (izq o der)
+				del raiz		
+				if (self.__dir == "I"): 
+					self.__padre.hizq = nieto
+				elif (self.__dir == "D"):
+					self.__padre.hder = nieto 
+				else: 
+					self.__raiz = nieto
+					
+				return True
+				
+			# Caso 3: Una rama completa
+			self.__padre = raiz
+			if (self.prof(raiz.hizq) > self.prof(raiz.hder)):
+				nodoCambio = self.__hijoMayor(raiz.hizq)
+			else:
+				nodoCambio = self.__hijoMenor(raiz.hder)
+
+			raiz.info = nodoCambio.info
+			self.eliminar(nodoCambio.info, nodoCambio) # Elimina nodo cambiado
+
+			return True
+					
+		# Busca Nodo
+		self.__padre = raiz
+		if (valor < raiz.info and raiz.hizq != None):
+			self.__dir = "I"
+			return self.eliminar(valor,raiz.hizq)
+		
+		if (raiz.hder != None):
+			self.__dir = "D"
+			return self.eliminar(valor,raiz.hder)
+			
+		return False
+	
 	# Retorna el numero de hojas de un arbol
 	def num_hojas (self, raiz = None):
 		
