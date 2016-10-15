@@ -1,6 +1,6 @@
 # Arbol Binario
-# Autor: Javier Rivera
-# https://repl.it/Dkvj/6
+# Autor: Javier Rivera (UNEFA)
+# https://repl.it/Dkvj/11
 
 class Nodo:
 	def __init__ (self, valor):
@@ -193,14 +193,14 @@ class Arbolb:
 		if (raiz.hizq != None):
 			M = self.__mayor
 			cons = self.esConsecutivo (raiz.hizq)
-			if (not(cons) and (self.__mayor + 1) != raiz.info):
+			if (not(cons) or (self.__mayor + 1) != raiz.info):
 				return False 
 			self.__mayor = M
 		
 		if (raiz.hder != None):
 			m = self.__menor 
 			cons = self.esConsecutivo (raiz.hder)
-			if (not(cons) and raiz.info != (self.__menor - 1)):
+			if (not(cons) or raiz.info != (self.__menor - 1)):
 				return False
 			self.__menor = m
 			
