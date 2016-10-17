@@ -354,3 +354,20 @@ class Arbolb:
 		if (raiz.hder != None):
 			self.inorden (raiz.hder)
 
+	#suma el valor de los nodos izquierdos	 colaborador Antony duque
+	def SNizq(self , raiz = None ):	
+		if (raiz == None):
+			self.__siz = 0	
+			if (self.__raiz == None):
+				return
+			raiz = self.__raiz
+	
+		if (raiz.hizq!=None):
+			self.__siz = self.__siz + raiz.hizq.info			
+			self.SNizq(raiz.hizq)
+			
+
+		if (raiz.hder!=None):
+			self.SNizq(raiz.hder)
+
+		return self.__siz 
