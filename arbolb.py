@@ -399,7 +399,7 @@ class Arbolb:
 
 
 
-a=arbolb()
+a=Arbolb()
 a.insertar(5)
 a.insertar(2)
 a.insertar(1)
