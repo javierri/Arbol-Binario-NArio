@@ -371,29 +371,29 @@ class Arbolb:
 
 		return self.__siz 
 	
-#nodos repetidos
-    def nodo_repetido(self,valor,nodo=None):
+#nodos repetidos by: Orlando ortega
+        def nodo_repetido(self,valor,nodo=None):
         
-        if(nodo==None):
-            if(self.__raiz==None):
-                return "arbol vacio"
-            nodo=self.__raiz
-            self.elem_rep=0
+            if(nodo==None):
+                if(self.__raiz==None):
+                    return "arbol vacio"
+                nodo=self.__raiz
+                self.elem_rep=0
             
-        padre=nodo
-        if(valor==padre.info):
-            self.elem_rep=self.elem_rep+1
+            padre=nodo
+            if(valor==padre.info):
+                self.elem_rep=self.elem_rep+1
             
-        if(nodo.hizq!=None):
+            if(nodo.hizq!=None):
         
-            self.nodo_repetido(valor,padre.hizq)
-        if(nodo.hder!=None):
+                self.nodo_repetido(valor,padre.hizq)
+            if(nodo.hder!=None):
             
-            self.nodo_repetido(valor,padre.hder)
+                self.nodo_repetido(valor,padre.hder)
         
-        if(self.elem_rep>1):
-            return True
-        return False
+            if(self.elem_rep>1):
+                return True
+            return False
              
         
 
