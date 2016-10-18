@@ -109,18 +109,12 @@ class Arbolb:
 			
 		if (raiz.info == valor):
 			if (raiz.hizq == None or raiz.hder == None):
+				
 				# Caso 1: Es una Hoja
 				if (raiz.hizq == None and raiz.hder == None):
-			
-					if (not(self.__padre)): # Es la raiz
-						del raiz 
-						self.__raiz = None
-						return True
+					nieto = None # Es la raiz
 					
-					nieto = None
-					
-				# Caso 2: Una rama con una sola Hoja	
-				else:
+				else: # Caso 2: Una rama con una sola Hoja	
 					if (raiz.hizq != None):
 						nieto = raiz.hizq
 					else:
