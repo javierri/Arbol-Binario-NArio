@@ -370,5 +370,21 @@ class Arbolb:
 			self.SumaNodoIzq (raiz.hder)
 
 		return self.__siz 
+	
+	# Suma el valor de los nodos derechos, colaborador Nestor Peña
+	def SumaNodoDer (self, raiz = None):	
+		if (raiz == None):
+			self.__sder = 0	
+			if (self.__raiz == None):
+				return 0
+			raiz = self.__raiz
+	
+		if (raiz.hizq != None):
+			self.SumaNodoDer (raiz.hizq)
+			
+		if (raiz.hder != None):
+			self.__sder = self.__sder + raiz.hder.info
+			self.SumaNodoDer (raiz.hder)
 
+		return self.__sder
         
