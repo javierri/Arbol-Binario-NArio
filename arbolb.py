@@ -370,45 +370,5 @@ class Arbolb:
 			self.SumaNodoIzq (raiz.hder)
 
 		return self.__siz 
-	
-        #nodos repetidos by: Orlando ortega
-        def nodo_repetido(self,valor,nodo=None):
+
         
-            if(nodo==None):
-                if(self.__raiz==None):
-                    return "arbol vacio"
-                nodo=self.__raiz
-                self.elem_rep=0
-            
-            padre=nodo
-            if(valor==padre.info):
-                self.elem_rep=self.elem_rep+1
-            
-            if(nodo.hizq!=None):
-        
-                self.nodo_repetido(valor,padre.hizq)
-            if(nodo.hder!=None):
-            
-                self.nodo_repetido(valor,padre.hder)
-        
-            if(self.elem_rep>1):
-                return True
-            return False
-             
-        
-
-
-
-a=Arbolb()
-a.insertar(5)
-a.insertar(2)
-a.insertar(1)
-a.insertar(3)
-a.insertar(4)
-a.insertar(6)
-a.insertar(8)
-a.insertar(7)
-a.insertar(5)
-
-
-print(a.nodo_repetido(5))
