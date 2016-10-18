@@ -371,7 +371,7 @@ class Arbolb:
 
 		return self.__siz 
 	
-#nodos repetidos by: Orlando ortega
+        #nodos repetidos by: Orlando ortega
         def nodo_repetido(self,valor,nodo=None):
         
             if(nodo==None):
