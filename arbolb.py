@@ -354,38 +354,20 @@ class Arbolb:
 		if (raiz.hder != None):
 			self.inorden (raiz.hder)
 
-	#suma el valor de los nodos izquierdos	 colaborador Antony duque
-	def SNizq(self , raiz = None ):	
+	# Suma el valor de los nodos izquierdos, colaborador Antony duque
+	def SumaNodoIzq (self, raiz = None):	
 		if (raiz == None):
 			self.__siz = 0	
 			if (self.__raiz == None):
-				return
+				return 0
 			raiz = self.__raiz
 	
-		if (raiz.hizq!=None):
+		if (raiz.hizq != None):
 			self.__siz = self.__siz + raiz.hizq.info			
-			self.SNizq(raiz.hizq)
+			self.SumaNodoIzq (raiz.hizq)
 			
-
-		if (raiz.hder!=None):
-			self.SNizq(raiz.hder)
+		if (raiz.hder != None):
+			self.SumaNodoIzq (raiz.hder)
 
 		return self.__siz 
-	# Metodo para sumar todos los elementos izquierdos del arbol
-	#Liliana Moreno
-   	 def suma_izq(self,raiz=None,suma = 0):
-        	if(raiz==None):
-            		if(self.__raiz==None):
-                		return
-           		 raiz = self.__raiz
-        
-        
-        if(raiz.hizq!=None): #esta verificando que la hoja izquierda no este vacida si cumple esta condicion hace la recursividad
-            suma+=raiz.hizq.info #se realiza la suma
-            return self.suma_izq(raiz.hizq,suma)
-            
-                
-        if(raiz.hder!=None): # verifica que no este vacio si no esta vacio se llama recursivamente
-            return self.suma_izq(raiz.hder,suma)
-
-        return suma # despues de sumar los elemtos retorna la suma total
+	
