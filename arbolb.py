@@ -365,36 +365,35 @@ class Arbolb:
 
 		return self.__siz 
 
-        #nodos en un determinado nivel by:Orlando Ortega
-        def nodos_nivel(self,nivel,nodo=None):
+        #hojas en un determinado nivel by:Orlando Ortega
+        def hojas_nivel(self,nivel,nodo=None):
             if(nodo==None):
                 if(self.__raiz==None):
                     return "arbol vacio"
                 nodo=self.__raiz
-                self.cant_nodos=0
+                self.cant_hojas=0
                 self.nivel=0
             padre=nodo
        
         
             if(nivel==0):
-                return 1
+                if(padre.hizq==None and padre.hder==None):
+                    return 1
             if(padre==self.__raiz.hder):
                 self.nivel=1
-            if(self.nivel+1==nivel):
-                if(padre.hizq!=None):
-                    self.cant_nodos=self.cant_nodos+1
-                if(padre.hder!=None):
-                    self.cant_nodos=self.cant_nodos+1
-                return self.cant_nodos
+            if(self.nivel==nivel):
+                if(padre.hizq==None and padre.hder==None):
+                    self.cant_hojas=self.cant_hojas+1
+                return self.cant_hojas
             if(padre.hizq!=None):
                 self.nivel=self.nivel+1
-                self.nodos_nivel(nivel,padre.hizq)
+                self.hojas_nivel(nivel,padre.hizq)
             if(padre.hder!=None):
                 if(padre.hizq==None):
                     self.nivel=self.nivel+1
-                self.nodos_nivel(nivel,padre.hder)
+                self.hojas_nivel(nivel,padre.hder)
             
-            return self.cant_nodos
+            return self.cant_hojas
 
 
 
@@ -410,5 +409,5 @@ a.insertar(7)
 
 
 
-print(a.nodos_nivel(3))
+print(a.hojas_nivel(3))
 #salida(2)
