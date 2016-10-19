@@ -40,7 +40,7 @@ class Arboln:
 		
 		if (self.__raiz == None):
 			self.__raiz = Nodo(valor)
-			return
+			return True
 				
 		if (val_padre == self.__raiz.info):
 			padre = self.__raiz
@@ -48,7 +48,10 @@ class Arboln:
 			padre = self.__buscar (val_padre, self.__raiz.hijos, 0)
 		
 		if (padre != None):
-			padre.hijos.insert(pos_hijo,Nodo(valor))
+			padre.hijos.insert (pos_hijo,Nodo(valor))
+			return True
+		
+		return False
 			
 	
 	def preorden(self, nodos = None, pos = 0):
