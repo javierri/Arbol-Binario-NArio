@@ -11,9 +11,7 @@ class Nodo:
 class Arboln:
 	def __init__(self):
 		self.__raiz = None
-		self.__actual = None
-		self.__nivel = 0
-		
+				
 	def __buscar (self, valor, hermanos = None, pos = 0):
 		
 		if (pos >= len(hermanos)):
