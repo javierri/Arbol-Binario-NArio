@@ -365,4 +365,50 @@ class Arbolb:
 
 		return self.__siz 
 
+        #nodos en un determinado nivel by:Orlando Ortega
+def nodos_nivel(self,nivel,nodo=None):
+        if(nodo==None):
+            if(self.__raiz==None):
+                return "arbol vacio"
+            nodo=self.__raiz
+            self.cant_nodos=0
+            self.nivel=0
+        padre=nodo
+       
         
+        if(nivel==0):
+            return 1
+        if(padre==self.__raiz.hder):
+            self.nivel=1
+        if(self.nivel+1==nivel):
+            if(padre.hizq!=None):
+                self.cant_nodos=self.cant_nodos+1
+            if(padre.hder!=None):
+                self.cant_nodos=self.cant_nodos+1
+            return self.cant_nodos
+        if(padre.hizq!=None):
+            self.nivel=self.nivel+1
+            self.nodos_nivel(nivel,padre.hizq)
+        if(padre.hder!=None):
+            if(padre.hizq==None):
+                self.nivel=self.nivel+1
+            self.nodos_nivel(nivel,padre.hder)
+            
+        return self.cant_nodos
+
+
+
+a=Arbolb()
+a.insertar(5)
+a.insertar(2)
+a.insertar(1)
+a.insertar(3)
+a.insertar(4)
+a.insertar(6)
+a.insertar(8)
+a.insertar(7)
+
+
+
+print(a.nodos_nivel(3))
+#salida(2)
