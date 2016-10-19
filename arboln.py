@@ -32,6 +32,9 @@ class Arboln:
 		
 	def buscar (self, valor):
 		
+		if (self.__raiz== valor):
+			return True
+		
 		if (self.__buscar(valor, self.__raiz.hijos, 0) != None):
 			return True
 		return False
