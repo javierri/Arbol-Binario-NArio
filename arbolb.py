@@ -366,35 +366,35 @@ class Arbolb:
 		return self.__siz 
 
         #nodos en un determinado nivel by:Orlando Ortega
-def nodos_nivel(self,nivel,nodo=None):
-        if(nodo==None):
-            if(self.__raiz==None):
-                return "arbol vacio"
-            nodo=self.__raiz
-            self.cant_nodos=0
-            self.nivel=0
-        padre=nodo
+        def nodos_nivel(self,nivel,nodo=None):
+            if(nodo==None):
+                if(self.__raiz==None):
+                    return "arbol vacio"
+                nodo=self.__raiz
+                self.cant_nodos=0
+                self.nivel=0
+            padre=nodo
        
         
-        if(nivel==0):
-            return 1
-        if(padre==self.__raiz.hder):
-            self.nivel=1
-        if(self.nivel+1==nivel):
+            if(nivel==0):
+                return 1
+            if(padre==self.__raiz.hder):
+                self.nivel=1
+            if(self.nivel+1==nivel):
+                if(padre.hizq!=None):
+                    self.cant_nodos=self.cant_nodos+1
+                if(padre.hder!=None):
+                    self.cant_nodos=self.cant_nodos+1
+                return self.cant_nodos
             if(padre.hizq!=None):
-                self.cant_nodos=self.cant_nodos+1
-            if(padre.hder!=None):
-                self.cant_nodos=self.cant_nodos+1
-            return self.cant_nodos
-        if(padre.hizq!=None):
-            self.nivel=self.nivel+1
-            self.nodos_nivel(nivel,padre.hizq)
-        if(padre.hder!=None):
-            if(padre.hizq==None):
                 self.nivel=self.nivel+1
-            self.nodos_nivel(nivel,padre.hder)
+                self.nodos_nivel(nivel,padre.hizq)
+            if(padre.hder!=None):
+                if(padre.hizq==None):
+                    self.nivel=self.nivel+1
+                self.nodos_nivel(nivel,padre.hder)
             
-        return self.cant_nodos
+            return self.cant_nodos
 
 
 
