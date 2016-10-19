@@ -365,49 +365,45 @@ class Arbolb:
 
 		return self.__siz 
 
-        #hojas en un determinado nivel by:Orlando Ortega
-        def hojas_nivel(self,nivel,nodo=None):
-            if(nodo==None):
-                if(self.__raiz==None):
-                    return "arbol vacio"
-                nodo=self.__raiz
-                self.cant_hojas=0
-                self.nivel=0
-            padre=nodo
-       
-        
-            if(nivel==0):
-                if(padre.hizq==None and padre.hder==None):
-                    return 1
-            if(padre==self.__raiz.hder):
-                self.nivel=1
-            if(self.nivel==nivel):
-                if(padre.hizq==None and padre.hder==None):
-                    self.cant_hojas=self.cant_hojas+1
-                return self.cant_hojas
-            if(padre.hizq!=None):
-                self.nivel=self.nivel+1
-                self.hojas_nivel(nivel,padre.hizq)
-            if(padre.hder!=None):
-                if(padre.hizq==None):
-                    self.nivel=self.nivel+1
-                self.hojas_nivel(nivel,padre.hder)
-            
-            return self.cant_hojas
+	# Hojas en un determinado nivel by:Orlando Ortega
+	# Niveles a partir de 0
+	#
+	# **** ALGORTIMO CON FALLAS ****
+	
+	def hojas_nivel (self, nivel, nodo = None):
+		
+		if (nodo == None):
+			if (self.__raiz == None):
+				return 0
+			nodo = self.__raiz
+			self.cant_hojas = 0
+			self.nivel = 0
+			
+		padre = nodo
 
+		if (nivel == 0): # Nivel de la Raiz
+			if (padre.hizq == None and padre.hder == None):
+				return 1
 
+		# Inicializa nivel al comenzar a recorrer rama derecha de la raiz
+		if (padre == self.__raiz.hder): 
+			self.nivel = 1
 
-a=Arbolb()
-a.insertar(5)
-a.insertar(2)
-a.insertar(1)
-a.insertar(3)
-a.insertar(4)
-a.insertar(6)
-a.insertar(8)
-a.insertar(7)
+		if (self.nivel == nivel): # Estoy en el Nivel solicitado
+			if (padre.hizq == None and padre.hder == None): # Es una Hoja
+				self.cant_hojas = self.cant_hojas + 1
+			return self.cant_hojas
 
+		if (padre.hizq != None): 
+			# Busca en la rama izquierda e incrementa nivel 
+			self.nivel = self.nivel + 1
+			self.hojas_nivel (nivel, padre.hizq)
 
+		if (padre.hder != None):
+			# Busca en la rama derecha e incrementa nivel 
+			# si no lo incremento por la rama ziqeuierda
+			if (padre.hizq == None):
+				self.nivel = self.nivel + 1
+			self.hojas_nivel (nivel, padre.hder)
 
-print(a.hojas_nivel(3))
-#salida(2)
+		return self.cant_hojas
