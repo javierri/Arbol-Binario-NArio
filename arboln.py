@@ -57,9 +57,9 @@ class Arboln:
 	def preorden(self, nodos = None, pos = 0):
 		
 		if (nodos == None):
-			nodos = [self.__raiz]
-			if (nodos == None):
+			if (self.__raiz == None):
 				return
+			nodos = [self.__raiz]
 		
 		if (pos >= len(nodos)):
 			return 
