@@ -66,7 +66,7 @@ class Arboln:
 			self.__mayorpadre = self.__raiz
 		
 		if (pos >= len(nodos)):
-			return None, 0
+			return 0
 			
 		if (len(nodos[pos].hijos) > len(self.__mayorpadre.hijos)):
 			self.__mayorpadre = nodos[pos] 
@@ -96,6 +96,7 @@ class Arboln:
 	
 		return h_unico + h_unicos_hijos + h_unicos_Hermanos
 	
+	# Recorrido en Preorden 
 	def preorden (self, nodos = None, pos = 0):
 		
 		if (nodos == None):
