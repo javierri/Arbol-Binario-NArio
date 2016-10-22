@@ -96,6 +96,33 @@ class Arboln:
 	
 		return h_unico + h_unicos_hijos + h_unicos_Hermanos
 	
+	# Retorna True si dos valores indicados son nodos hermanos en el arbol n-ario
+	def son_hermanos (self, fulano, sutano, nodos = None, pos = 0):
+		if (nodos == None):
+			if (self.__raiz == None):
+				return False
+			nodos = [self.__raiz]
+		
+		if (pos >= len(nodos)):
+			return False
+		
+		hermano = None
+		if (fulano == nodos[pos].info): # Existe Fulano
+			hermano = sutano
+		elif (sutano == nodos[pos].info): # Existe Mengano
+			hermano = fulano
+			
+		if (hermano != None): # Buscar el hermano si exite fulano o sutano
+			for nodo in nodos:
+				if (hermano == nodo.info): # Encuentra al hermano
+					return True
+			
+		encontro = self.son_hermanos(fulano,sutano,nodos[pos].hijos)			
+		if (encontro):
+			return True
+		
+		return self.son_hermanos(fulano,sutano,nodos, pos + 1)		
+	
 	# Recorrido en Preorden 
 	def preorden (self, nodos = None, pos = 0):
 		
@@ -110,16 +137,3 @@ class Arboln:
 		print nodos[pos].info, 
 		self.preorden (nodos[pos].hijos)
 		self.preorden (nodos, pos + 1)
-
-# PRINCIPAL
-
-a = Arboln()
-a.insertar("A")
-a.insertar("B","A")
-a.insertar("C","A")
-a.insertar("D","A",1)
-a.insertar("E","C")
-a.insertar("F","C")
-a.insertar("G","B")
-
-a.preorden()
