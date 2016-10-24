@@ -368,16 +368,16 @@ class Arbolb:
 	# Hojas en un determinado nivel by:Orlando Ortega
 	# Niveles a partir de 0
 	#
-	# **** ALGORTIMO CON FALLAS ****
+	# **** ALGORTIMO SIN FALLAS ****
 	
-	def hojas_nivel (self, nivel, nodo = None):
+	def hojas_nivel (self, nivel, nodo = None, nro_nivel=0):
 		
 		if (nodo == None):
 			if (self.__raiz == None):
 				return 0
 			nodo = self.__raiz
 			self.cant_hojas = 0
-			self.nivel = 0
+			
 			
 		padre = nodo
 
@@ -385,25 +385,25 @@ class Arbolb:
 			if (padre.hizq == None and padre.hder == None):
 				return 1
 
-		# Inicializa nivel al comenzar a recorrer rama derecha de la raiz
-		if (padre == self.__raiz.hder): 
-			self.nivel = 1
+		
+		
+			
 
-		if (self.nivel == nivel): # Estoy en el Nivel solicitado
+		if (nro_nivel == nivel): # Estoy en el Nivel solicitado
 			if (padre.hizq == None and padre.hder == None): # Es una Hoja
 				self.cant_hojas = self.cant_hojas + 1
 			return self.cant_hojas
 
 		if (padre.hizq != None): 
 			# Busca en la rama izquierda e incrementa nivel 
-			self.nivel = self.nivel + 1
-			self.hojas_nivel (nivel, padre.hizq)
+			nro_nivel = nro_nivel + 1
+			self.hojas_nivel (nivel, padre.hizq, nro_nivel)
 
 		if (padre.hder != None):
 			# Busca en la rama derecha e incrementa nivel 
 			# si no lo incremento por la rama ziqeuierda
 			if (padre.hizq == None):
-				self.nivel = self.nivel + 1
-			self.hojas_nivel (nivel, padre.hder)
+				nro_nivel = nro_nivel + 1
+			self.hojas_nivel (nivel, padre.hder, nro_nivel)
 
 		return self.cant_hojas
