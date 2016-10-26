@@ -407,3 +407,64 @@ class Arbolb:
 			self.hojas_nivel (nivel, padre.hder, nro_nivel)
 
 		return self.cant_hojas
+	
+	
+	#Metodo que retorna cuantas veces existe un nodo en un Arbol binario
+	#colaborador Gerardo Uzcategui
+	def buscar_rep(self,valor,raiz = None):
+
+
+		if (raiz == None):
+			self.__rep = 0
+			if (self.__raiz == None):
+				return 
+			raiz = self.__raiz
+
+
+		if (raiz.info == valor):
+
+			self.__rep = self.__rep + 1
+			
+
+
+		g,h = False,False
+		if (valor < raiz.info and raiz.hizq != None):	
+			
+
+			return self.buscar_rep(valor,raiz.hizq)
+
+		if (valor >= raiz.info and raiz.hder != None):
+
+			return self.buscar_rep(valor,raiz.hder)
+
+		return self.__rep
+	
+	
+	#Metodo que indica si un arbol binario tiene nodos repetidos o no
+	#colaborador Gerardo Uzcategui
+	
+	def repetidos(self, raiz = None):
+
+		if (raiz == None):
+			
+			if (self.__raiz == None):
+				return False
+			raiz = self.__raiz
+		
+
+		if (self.buscar_rep(raiz.info) > 1):
+
+			return True
+
+		g,h = False,False
+		if (raiz.hizq != None):
+			g = self.repetidos(raiz.hizq)
+
+		if (raiz.hder != None):
+			h = self.repetidos(raiz.hder)
+
+		if (g or h == True):
+			return True
+
+		return False
+
