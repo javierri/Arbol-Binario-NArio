@@ -427,7 +427,7 @@ class Arbolb:
 			
 
 
-		g,h = False,False
+		
 		if (valor < raiz.info and raiz.hizq != None):	
 			
 
