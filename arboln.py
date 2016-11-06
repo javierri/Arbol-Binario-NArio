@@ -137,3 +137,22 @@ class Arboln:
 		print nodos[pos].info, 
 		self.preorden (nodos[pos].hijos)
 		self.preorden (nodos, pos + 1)
+		
+	# Retorna la cantidad de nodos en el arbol que tienen mas de n hijos
+	def nodos_mas_hijos_de (self, n, nodos = None, pos = 0):
+		if (nodos == None):
+			if (self.__raiz == None):
+				return 0
+			nodos = [self.__raiz]
+		
+		if (pos >= len(nodos)):
+			return 0
+		
+		cont = 0 	
+		if (len(nodos[pos].hijos) > n):
+			cont = 1
+			
+		cont += self.nodos_mas_hijos_de (n, nodos[pos].hijos)
+		cont += self.nodos_mas_hijos_de (n, nodos, pos + 1)
+		
+		return cont
