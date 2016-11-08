@@ -385,10 +385,6 @@ class Arbolb:
 			if (padre.hizq == None and padre.hder == None):
 				return 1
 
-		
-		
-			
-
 		if (nro_nivel == nivel): # Estoy en el Nivel solicitado
 			if (padre.hizq == None and padre.hder == None): # Es una Hoja
 				self.cant_hojas = self.cant_hojas + 1
