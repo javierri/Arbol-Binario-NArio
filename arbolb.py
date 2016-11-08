@@ -478,4 +478,36 @@ class Arbolb:
 			return self.esPerfecto(raiz.hder, nivel+1)
 		
 		return True
+	
+	# Metodo que retorna los elementos de un arbol binario que hacen falta para que 
+	# el arbol tenga todo sus valores consecutivamente con paso 1
+	
+	def faltanConsecutivo (self, raiz = None, valor = None):
+		
+		if (raiz == None):
+			if (self.__raiz == None):
+				return
+			raiz = self.__raiz
+			self.__faltan = [] # Guarda los elementos faltantes
+
+		self.__mayor = self.__menor = raiz.info
+		
+		if (raiz.hizq != None):
+			M = self.__mayor
+			self.faltanConsecutivo (raiz.hizq)
+			if (raiz.info != (self.__mayor + 1)):
+				for i in range(raiz.info + 1, self.__mayor):
+					self.__faltan.append(i)
+			self.__mayor = M
+		
+		if (raiz.hder != None):
+			m = self.__menor 
+			self.faltanConsecutivo (raiz.hder)
+			if (raiz.info != (self.__menor - 1)):
+				for i in range(raiz.info + 1,self.__menor):
+					self.__faltan.append(i)
+			self.__menor = m
+			
+		return self.__faltan
+	
 
