@@ -424,9 +424,6 @@ class Arbolb:
 		if (raiz.info == valor):
 
 			self.__rep = self.__rep + 1
-			
-
-
 		
 		if (valor < raiz.info and raiz.hizq != None):	
 			
@@ -467,4 +464,29 @@ class Arbolb:
 			return True
 
 		return False
+	
+	# Retorna si un arbol binario es perfecto (todas sus hojas estan completas y en el último nivel)
+	def esPerfecto (self, raiz = None, nivel = 0):
+		
+		if (raiz == None):
+			if (self.__raiz == None):
+				return
+			self.__nivel_hoja = None  # atributo que almacena el nivel de las hojas
+			raiz = self.__raiz
+			
+		if (raiz.hizq == None and raiz.hder == None): # Es una hoja
+			if (self.__nivel_hoja == None):
+				self.__nivel_hoja = nivel
+				 
+			if (self.__nivel_hoja != nivel): # verifica si todas las hojas estan en el mimsmo nivel
+				return False 
+		
+		if (raiz.hizq != None):
+			if (self.esPerfecto(raiz.hizq, nivel+1) == False):
+				return False
+		
+		if (raiz.hder != None):
+			return self.esPerfecto(raiz.hder, nivel+1)
+		
+		return True
 
