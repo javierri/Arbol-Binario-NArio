@@ -496,7 +496,7 @@ class Arbolb:
 			M = self.__mayor
 			self.faltanConsecutivo (raiz.hizq)
 			if (raiz.info != (self.__mayor + 1)):
-				for i in range(raiz.info + 1, self.__mayor):
+				for i in range(self.__mayor + 1, raiz.info):
 					self.__faltan.append(i)
 			self.__mayor = M
 		
@@ -507,7 +507,8 @@ class Arbolb:
 				for i in range(raiz.info + 1,self.__menor):
 					self.__faltan.append(i)
 			self.__menor = m
-			
+		
+		self.__faltan.sort()
 		return self.__faltan
 	
 
