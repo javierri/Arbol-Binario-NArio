@@ -82,6 +82,7 @@ class Arbolb:
 			
 		return raiz
 		
+	# Retorna la profundidad de un arbol, un arbol vacio tiene profundidad 0
 	def prof (self, raiz = None):
 		if (raiz == None):
 			if (self.__raiz == None):
