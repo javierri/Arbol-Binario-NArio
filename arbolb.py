@@ -483,7 +483,7 @@ class Arbolb:
 	# Metodo que retorna los elementos de un arbol binario que hacen falta para que 
 	# el arbol tenga todo sus valores consecutivamente con paso 1
 	
-	def faltanConsecutivo (self, raiz = None, valor = None):
+	def faltanConsecutivo (self, raiz = None):
 		
 		if (raiz == None):
 			if (self.__raiz == None):
