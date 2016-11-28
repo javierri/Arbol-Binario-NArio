@@ -308,6 +308,13 @@ class Arbolb:
 					
 		if (raiz.hder != None):
 			self.n_nodos(raiz.hder)
+			
+		# Respalda el valor del atributo temporal en una variable local, 
+		# elimina el atributo temporal y retorna el valor de la variable local
+		if (raiz == self.__raiz):
+			n = self.__n
+			del self.__n
+			return n
 		
 		return self.__n
 	
